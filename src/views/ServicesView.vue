@@ -2,19 +2,20 @@
 	<div class="services">
 		<div class="services__cards">
 			<div class="services__cardWrapper" v-for="cardData in cardsData" :key="cardData.id">
-				<router-link :to="`/services/${cardData.id}`">
-					<div class="services__card">
-						<div class="services__img">
-							<img :src="cardData.photo" alt="" />
-						</div>
-						<div class="services__info">
-							<div class="services__title">{{ cardData.title }}</div>
-							<div class="services__description">
-								{{ cardData.description }}
-							</div>
+				<div class="services__card" @click.stop="goToService($event, cardData.id)">
+					<div class="services__img">
+						<!-- <img :src="cardData.photo" alt="" /> --><CardPhotoSwiper
+							:cardsData="cardsData"
+						/>
+					</div>
+
+					<div class="services__info">
+						<div class="services__title">{{ cardData.title }}</div>
+						<div class="services__description">
+							{{ cardData.description }}
 						</div>
 					</div>
-				</router-link>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -23,13 +24,23 @@
 <script setup>
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
+import CardPhotoSwiper from '@/components/Swiper/CardPhotoSwiper.vue';
+
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
+
 console.log('store.state', store.state.services);
+
 const cardsData = store.state.services;
 console.log(route.params.id);
-console.log(router);
+console.log('router', router);
+
+const goToService = (event, cardId) => {
+	if (!event.target.closest('.swiper-slide')) {
+		router.push(`/services/${cardId}`);
+	}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -48,7 +59,6 @@ console.log(router);
 	&__card {
 		border: 2px solid grey;
 		margin-right: 35px;
-		max-height: 350px;
 	}
 	&__img > img {
 		width: 100%;

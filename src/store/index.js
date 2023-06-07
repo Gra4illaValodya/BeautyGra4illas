@@ -8,10 +8,9 @@ export const store = createStore({
 				id: 1,
 				photo: 'https://savanna.in.ua/wp-content/uploads/2019/01/tatoo-tatuazh-800x500.jpg',
 				photoSwiper: [
-					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits__12-min.jpg',
-					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits_main-1-min.jpg',
-					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits_main-3-min.jpg',
-					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits_main-4-min.jpg'
+					'https://lbar.com.ua/assets/images/resources/264/brovi21-2.jpg',
+					'https://lbar.com.ua/assets/images/resources/264/brovi21-11.jpg',
+					'https://lbar.com.ua/webp/assets/images/resources/264/medium/gz3-min.jpg.webp'
 				],
 				title: 'ПЕРМАНЕНТ МАКIЯЖУ',
 				description:
@@ -74,7 +73,6 @@ export const store = createStore({
 				id: 2,
 				photo: 'https://savanna.in.ua/wp-content/uploads/2019/01/botoks-inekcii-golovna-800x500.jpg',
 				photoSwiper: [
-					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits__12-min.jpg',
 					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits_main-1-min.jpg',
 					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits_main-3-min.jpg',
 					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits_main-4-min.jpg'
@@ -137,7 +135,6 @@ export const store = createStore({
 				id: 3,
 				photo: 'https://savanna.in.ua/wp-content/uploads/2019/01/naroshchennya-vij-savanna-800x500.jpg',
 				photoSwiper: [
-					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits__12-min.jpg',
 					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits_main-1-min.jpg',
 					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits_main-3-min.jpg',
 					'https://barb.ua/uploads/images/articles/narashivanie-resnits/narashhivanie-resnits_main-4-min.jpg'
