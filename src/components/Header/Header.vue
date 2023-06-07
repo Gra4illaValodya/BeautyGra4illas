@@ -3,9 +3,9 @@
 		<div class="header__logo">LOGO</div>
 		<div class="header__nav">
 			<nav>
-				<div class="header__navItem">Services</div>
-				<div class="header__navItem">About</div>
-				<div class="header__navItem">Home</div>
+				<router-link to="/services" class="header__navItem">Services</router-link>
+				<router-link to="/about" class="header__navItem">About</router-link>
+				<router-link to="/home" class="header__navItem">Home</router-link>
 			</nav>
 		</div>
 	</div>
@@ -23,8 +23,12 @@ import { ref } from 'vue';
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	margin-bottom: 100px;
 	&__navItem {
 		margin-right: 20px;
+	}
+	&__logo {
+		font-size: 10px;
 	}
 }
 nav {

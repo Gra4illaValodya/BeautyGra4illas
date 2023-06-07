@@ -2,7 +2,7 @@
 	<div class="services">
 		<div class="services__cards">
 			<div class="services__cardWrapper" v-for="cardData in cardsData" :key="cardData.id">
-				<router-link :to="`/card/${cardData.id}`">
+				<router-link :to="`/services/${cardData.id}`">
 					<div class="services__card">
 						<div class="services__img">
 							<img :src="cardData.photo" alt="" />
@@ -17,7 +17,6 @@
 				</router-link>
 			</div>
 		</div>
-		<np></np>
 	</div>
 </template>
 
@@ -27,6 +26,8 @@ import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
+console.log('store.state', store.state.services);
+const cardsData = store.state.services;
 console.log(route.params.id);
 console.log(router);
 </script>
@@ -47,12 +48,16 @@ console.log(router);
 	&__card {
 		border: 2px solid grey;
 		margin-right: 35px;
+		max-height: 350px;
 	}
 	&__img > img {
 		width: 100%;
 	}
 	&__info {
 		padding: 15px;
+	}
+	&__title {
+		padding-bottom: 25px;
 	}
 }
 </style>
