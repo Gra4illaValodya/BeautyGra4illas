@@ -4,9 +4,8 @@
 			<div class="services__cardWrapper" v-for="cardData in cardsData" :key="cardData.id">
 				<div class="services__card" @click.stop="goToService($event, cardData.id)">
 					<div class="services__img">
-						<!-- <img :src="cardData.photo" alt="" /> --><CardPhotoSwiper
-							:cardsData="cardsData"
-						/>
+						<!-- <img :src="cardData.photo" alt="" /> -->
+						<CardPhotoSwiper :cardsData="cardsData" />
 					</div>
 
 					<div class="services__info">
@@ -30,10 +29,9 @@ const route = useRoute();
 const router = useRouter();
 const store = useStore();
 
-console.log('store.state', store.state.services);
-
 const cardsData = store.state.services;
-console.log(route.params.id);
+console.log('store.state', cardsData);
+console.log(route.params);
 console.log('router', router);
 
 const goToService = (event, cardId) => {

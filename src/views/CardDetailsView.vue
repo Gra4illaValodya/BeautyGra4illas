@@ -1,5 +1,5 @@
 <template>
-	<div class="cardDetails">
+	<div class="cardDetails" :class="{ open: isModalOpen }">
 		<div class="cardDetails__wrapper" v-if="selectedCard">
 			<h3 class="cardDetails__title">{{ selectedCard.title }}</h3>
 			<div class="cardDetails__description">{{ selectedCard.fullDescription }}</div>
@@ -22,25 +22,34 @@
 			<div class="cardDetails__checkWrapper">
 				<div class="cardDetails__checkBtnWrapper">
 					<h3>Загальна сумма : {{ totalSelectedPrice }}</h3>
-					<button class="cardDetails__check">Оплатити</button>
+					<button class="cardDetails__check" @click="isModalOpen = true">
+						записатися
+					</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<RecordModal :isModalOpen="isModalOpen" :closeModal="closeModalParent" @data="fromChild" />
 </template>
 
 <script setup>
 import { computed, ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
+import RecordModal from '@/components/RecordModal/RecordModal.vue';
 
 const route = useRoute();
 const store = useStore();
 const selectedCard = ref(null);
 const offers = ref([]);
-
+const fromChild = data => {
+	console.log(data);
+};
 const offerItems = ref([]);
-
+const isModalOpen = ref(false);
+const closeModalParent = () => {
+	isModalOpen.value = false;
+};
 const addOffer = offer => {
 	const index = offerItems.value.findIndex(item => item.offer.offerName === offer.offerName);
 	console.log('index', index);
@@ -104,5 +113,10 @@ console.log('offers', offers.value);
 	&__btn {
 		background-color: aliceblue;
 	}
+}
+
+.open {
+	opacity: 0.8;
+	background-color: rgb(73, 73, 73);
 }
 </style>

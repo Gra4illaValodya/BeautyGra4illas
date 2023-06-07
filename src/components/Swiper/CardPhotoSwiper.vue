@@ -33,11 +33,7 @@
 
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import SwiperCore, { Navigation, Pagination } from 'swiper/core';
-import 'swiper/swiper-bundle.css';
 
-// Установите необходимые модули Swiper
-SwiperCore.use([Navigation, Pagination]);
 import { ref } from 'vue';
 import { defineProps } from 'vue';
 import { useStore } from 'vuex';
