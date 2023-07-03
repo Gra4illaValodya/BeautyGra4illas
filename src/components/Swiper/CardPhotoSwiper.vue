@@ -13,18 +13,15 @@
 			@slideChange="onSlideChange"
 			ref="swiperRef"
 		>
-			<template v-for="cardData in cardsData" :key="cardData.id">
-				<swiper-slide class="slide">
-					<template
-						v-for="(photo, index) in cardData.photoSwiper"
-						:key="`${cardData.id}-${index}`"
-					>
-						<SwiperSlide>
-							<img class="swiperImg" :src="photo" alt="Image" />
-						</SwiperSlide>
-					</template>
-				</swiper-slide>
+			<template
+				v-for="(photo, index) in cardData.photoSwiper"
+				:key="`${cardData.id}-${index}`"
+			>
+				<SwiperSlide>
+					<img class="swiperImg" :src="photo" alt="Image" />
+				</SwiperSlide>
 			</template>
+
 			<div class="swiper-button-prev swiper-button" @click.stop="prevSlide"></div>
 			<div class="swiper-button-next swiper-button" @click.stop="nextSlide"></div>
 		</swiper>
@@ -46,18 +43,22 @@ import 'swiper/css/scrollbar';
 const store = useStore();
 
 const props = defineProps({
-	cardsData: {
-		type: Array
+	cardData: {
+		type: Object
 	}
 });
 const swiperRef = ref(null);
 
 const nextSlide = () => {
-	swiperRef.value.swiper.slideNext();
+	if (swiperRef.value && swiperRef.value.swiper) {
+		swiperRef.value.swiper.slideNext();
+	}
 };
 
 const prevSlide = () => {
-	swiperRef.value.swiper.slidePrev();
+	if (swiperRef.value && swiperRef.value.swiper) {
+		swiperRef.value.swiper.slidePrev();
+	}
 };
 
 const onSlideChange = () => {

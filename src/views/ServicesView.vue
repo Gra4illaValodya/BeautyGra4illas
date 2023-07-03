@@ -5,7 +5,7 @@
 				<div class="services__card" @click.stop="goToService($event, cardData.id)">
 					<div class="services__img">
 						<!-- <img :src="cardData.photo" alt="" /> -->
-						<CardPhotoSwiper :cardsData="cardsData" />
+						<CardPhotoSwiper :cardData="cardData" />
 					</div>
 
 					<div class="services__info">
@@ -29,7 +29,7 @@ const route = useRoute();
 const router = useRouter();
 const store = useStore();
 
-const cardsData = store.state.services;
+const cardsData = store.state.servicesModule.services;
 console.log('store.state', cardsData);
 console.log(route.params);
 console.log('router', router);
@@ -43,6 +43,8 @@ const goToService = (event, cardId) => {
 
 <style lang="scss" scoped>
 .services {
+	display: flex;
+	justify-content: center;
 	&__cards {
 		display: flex;
 	}

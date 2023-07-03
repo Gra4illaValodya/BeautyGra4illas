@@ -1,5 +1,5 @@
 <template>
-	<div class="cardDetails" :class="{ open: isModalOpen }">
+	<div class="cardDetails">
 		<div class="cardDetails__wrapper" v-if="selectedCard">
 			<h3 class="cardDetails__title">{{ selectedCard.title }}</h3>
 			<div class="cardDetails__description">{{ selectedCard.fullDescription }}</div>
@@ -10,9 +10,9 @@
 						<div class="cardDetails__offerName">{{ offer.offerName }}</div>
 					</div>
 					<div class="cardDetails__btnWrapper">
-						<button class="cardDetails__btn" @click="addOffer(offer)">
+						<div class="cardDetails__btn" @click="addOffer(offer)">
 							{{ offer.added ? 'Вiдмiнити' : 'Купити' }}
-						</button>
+						</div>
 					</div>
 					<div>
 						<div class="cardDetails__offerPrice">{{ offer.offerPrice }}</div>
@@ -81,11 +81,12 @@ const totalSelectedPrice = computed(() => {
 			totalPrice += item.offer.offerPrice;
 		}
 	});
+
 	return totalPrice;
 });
 watchEffect(() => {
 	const cardId = Number(route.params.id);
-	selectedCard.value = store.state.services.find(card => card.id === cardId);
+	selectedCard.value = store.state.servicesModule.services.find(card => card.id === cardId);
 	offers.value = selectedCard.value ? selectedCard.value.offers : [];
 	console.log('store.state.seletedItems', store.state.selectedOffer);
 });
@@ -111,6 +112,8 @@ console.log('offers', offers.value);
 		margin-right: 5px;
 	}
 	&__btn {
+		border: 1px solid black;
+		padding: 2px 5px;
 		background-color: aliceblue;
 	}
 }

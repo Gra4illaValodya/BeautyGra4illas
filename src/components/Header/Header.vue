@@ -3,9 +3,11 @@
 		<div class="header__logo">LOGO</div>
 		<div class="header__nav">
 			<nav>
-				<router-link to="/services" class="header__navItem">Services</router-link>
-				<router-link to="/about" class="header__navItem">About</router-link>
-				<router-link to="/home" class="header__navItem">Home</router-link>
+				<router-link to="/home" class="header__navItem">Головна</router-link>
+				<router-link to="/about" class="header__navItem">Про мене</router-link>
+				<router-link to="/services" class="header__navItem">Послуги</router-link>
+				<router-link to="/youtube" class="header__navItem">youtube</router-link>
+				<router-link to="/photoWorkView" class="header__navItem">ФОТО РОБIТ</router-link>
 			</nav>
 		</div>
 	</div>
@@ -23,7 +25,11 @@ import { ref } from 'vue';
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	margin-bottom: 100px;
+	margin-bottom: 40px;
+	border-radius: 10px;
+	border-top: 2px solid rgb(255, 46, 46);
+	border-bottom: 2px solid rgb(255, 46, 46);
+
 	&__navItem {
 		margin-right: 20px;
 	}
