@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import servicesModule from './modules/servicesModule';
 import photoWorkModule from './modules/photoWorkModule';
+import homeSalonsModules from './modules/homeSalonsModules';
 
 export const store = createStore({
 	state: {
@@ -14,6 +15,7 @@ export const store = createStore({
 	},
 	modules: {
 		servicesModule,
-		photoWorkModule
+		photoWorkModule,
+		homeSalonsModules
 	}
 });

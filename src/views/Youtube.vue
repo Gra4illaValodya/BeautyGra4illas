@@ -1,12 +1,5 @@
 <template>
 	<div class="youtube">
-		<!-- <div>
-			<button>
-				<i v-if="pause" class="fa-sharp fa-solid fa-circle-play"></i>
-				<i v-else class="fa-solid fa-circle-pause"></i>
-			</button>
-		</div> -->
-
 		<div
 			ref="refYoutube"
 			class=""
