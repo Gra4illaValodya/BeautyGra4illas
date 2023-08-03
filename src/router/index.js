@@ -7,6 +7,10 @@ import HomeView from '../views/HomeView.vue';
 import LogoView from '../views/LogoView.vue';
 import PhotoWorkView from '../views/PhotoWorkView.vue';
 import Youtube from '../views/Youtube.vue';
+import Record from '../views/Record.vue';
+import Classes from '../views/Classes.vue';
+import MoreLess from '../views/Classes/MoreLess.vue';
+import Calendar from '../views/Classes/Calendar.vue';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,10 +20,31 @@ const router = createRouter({
 			name: 'services',
 			component: ServicesView
 		},
+
 		{
 			path: '/youtube',
 			name: 'youtube',
 			component: Youtube
+		},
+		{
+			path: '/classes',
+			name: 'classes',
+			component: Classes
+		},
+		{
+			path: '/classes/moreLess',
+			name: 'moreLess',
+			component: MoreLess
+		},
+		{
+			path: '/classes/calendar',
+			name: 'calendar',
+			component: Calendar
+		},
+		{
+			path: '/record',
+			name: 'record',
+			component: Record
 		},
 		{
 			path: '/photoWorkView',

@@ -30,8 +30,10 @@ import { useStore } from 'vuex';
 const store = useStore();
 const router = useRouter();
 const salons = computed(() => store.state.homeSalonsModules.salons);
+
 const selectedSalon = ref('Velay');
 const selectedSalonUrl = ref('');
+
 const showMap = ref(true);
 console.log('router', router);
 console.log('salons', salons.value);
@@ -46,7 +48,7 @@ const mapGoogle = url => `https://www.google.com/maps/embed?pb=${url}`;
 
 const updateSelectedSalonUrl = () => {
 	const salon = salons.value.find(salon => salon.value === selectedSalon.value);
-	console.log('salon', salon.mapUrl);
+	console.log('salon', salon);
 	if (salon.mapUrl) {
 		selectedSalonUrl.value = mapGoogle(salon.mapUrl);
 		console.log('selectedSalonUrl.value', selectedSalonUrl.value);

@@ -217,11 +217,11 @@ const servicesModule = {
 			}
 		]
 	},
-	mutations: {
-		setSelectedOffer(state, item) {
-			state.selectedOffer = [item];
-		},
-		
-	}
+	
+		mutations: {
+			setSelectedOffer(state, item) {
+				state.selectedOffer = [item];
+			},
+		}
 };
 export default servicesModule;

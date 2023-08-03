@@ -10,6 +10,7 @@
 							<label for="name">Ім'я та прізвище: </label>
 							<input type="text" name="name" v-model="formData.name" />
 						</div>
+						margin: 0px 0px 0px 0px
 						<div class="modal__input">
 							<label for="date">Дата запису: </label>
 							<div class="calendar">
@@ -27,17 +28,7 @@
 							<span @click="sendToParent"> на мiсцi</span>
 						</div>
 						<div class="modal__input">
-							<label for="select">Вибiр Салона </label>
-							<select
-								name="select"
-								id=""
-								class="modal__salon"
-								v-model="formData.salon"
-							>
-								<option value="BeautyTopchik">BeautyTopchik</option>
-								<option value="StarGirls">StarGirls</option>
-								<option value="PinkMask">PinkMask</option>
-							</select>
+							<SalonsMap :textProps="textProps" />
 						</div>
 						<div class="submit"><button type="submit">Вiдправити</button></div>
 					</form>
@@ -47,6 +38,7 @@
 	</div>
 </template>
 <script setup>
+import SalonsMap from '../SalonsMap/SalonsMap.vue';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 import { defineProps, defineEmits, ref, watchEffect } from 'vue';
@@ -61,12 +53,15 @@ const props = defineProps({
 		type: Function
 	}
 });
+const textProps = ref('TEXT IN PARENT COMPONENT');
 const store = useStore();
 const emits = defineEmits(['data']);
 const sendToParent = () => {
 	const data = props.isModalOpen;
 	emits('data', data);
 };
+const inParentCom = ref(null);
+
 const testInput = (re, str) => {
 	let midstring;
 	if (re.test(str)) {
@@ -97,17 +92,16 @@ const submitFormData = () => {
 	const recordedClient = {
 		name: formData.value.name,
 		date: formData.value.date,
-		paymentMethod: formData.value.paymentMethod,
-		salon: formData.value.salon
+		paymentMethod: formData.value.paymentMethod
 	};
 	if (!recordedClient.name) {
 		toastr.error('Ви не заповнили iмя');
 	}
 
-	if (!recordedClient.salon) {
-		toastr.error('Пожалуйста, выберите хотя бы одну услугу.');
-		return;
-	}
+	// if (!recordedClient.salon) {
+	// 	toastr.error('Пожалуйста, выберите хотя бы одну услугу.');
+	// 	return;
+	// }
 	store.commit('setRecordedClients', recordedClient);
 	props.closeModal();
 	console.log('store.state.recordedClient', store.state.recordedClients);
@@ -119,6 +113,7 @@ console.log('store.state.recordedClients', store.state.recordedClients);
 .calendar {
 	background-color: blanchedalmond;
 }
+
 .bgModal {
 	position: fixed;
 	top: 0;
@@ -129,6 +124,7 @@ console.log('store.state.recordedClients', store.state.recordedClients);
 	justify-content: center;
 	align-items: center;
 	z-index: 999;
+	overflow: scroll;
 }
 
 .overlay {
@@ -152,6 +148,8 @@ console.log('store.state.recordedClients', store.state.recordedClients);
 	background-color: rgb(235, 239, 239);
 	transform: translate(-50%, 60%);
 	padding: 35px;
+	height: 600px;
+	overflow-y: scroll;
 	border: 3px solid black;
 	opacity: 1 !important;
 	z-index: 2;

@@ -28,6 +28,7 @@
 	font-size: 24px;
 	color: purple;
 }
+
 .about {
 	&__titleWrapper {
 		height: 80px;

@@ -8,6 +8,8 @@
 				<router-link to="/services" class="header__navItem">Послуги</router-link>
 				<router-link to="/youtube" class="header__navItem">youtube</router-link>
 				<router-link to="/photoWorkView" class="header__navItem">ФОТО РОБIТ</router-link>
+				<router-link to="/record" class="header__navItem">Форма запису</router-link>
+				<router-link to="/classes" class="header__navItem">уроки</router-link>
 			</nav>
 		</div>
 	</div>
