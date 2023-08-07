@@ -9,12 +9,12 @@
 <script setup>
 import { SwiperSlide } from 'swiper/vue';
 
-const props = def {
+const props = defineProps ({
   photoSwiper: {
     type: Array,
     required: true
   }
-}
+})
 
 export default {
   components: {

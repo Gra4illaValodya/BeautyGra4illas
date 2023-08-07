@@ -9,6 +9,9 @@
 			<li>
 				<router-link to="/classes/calendar" class="classes__navItem"> Календар</router-link>
 			</li>
+			<li>
+				<router-link to="/classes/swiper" class="classes__navItem"> Свайпер</router-link>
+			</li>
 		</ul>
 	</div>
 </template>

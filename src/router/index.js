@@ -11,6 +11,7 @@ import Record from '../views/Record.vue';
 import Classes from '../views/Classes.vue';
 import MoreLess from '../views/Classes/MoreLess.vue';
 import Calendar from '../views/Classes/Calendar.vue';
+import Swiper from '../views/Classes/Swiper.vue';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,11 @@ const router = createRouter({
 			path: '/classes/calendar',
 			name: 'calendar',
 			component: Calendar
+		},
+		{
+			path: '/classes/swiper',
+			name: 'swiper',
+			component: Swiper
 		},
 		{
 			path: '/record',
