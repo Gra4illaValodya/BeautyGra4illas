@@ -5,14 +5,11 @@
 			:space-between="swiperOptions.spaceBetween"
 			@swiper="onSwiper"
 			@slideChange="onSlideChange"
-
-
 			:scrollbar="swiperOptions.scrollbar"
-			slidesPerView: 2.5,
-	spaceBetween: 10,
-	pagination: { clickable: true },
-	:navigation= "{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }"
-
+			:slidesPerView="swiperOptions.slidesPerView"
+			:spaceBetween="swiperOptions.spaceBetween"
+			:pagination="swiperOptions.pagination"
+			:navigation="swiperOptions.navigation"
 		>
 			<SwiperSlide class="reviews__wrapper" v-for="(contain, idx) in reviews" :key="idx">
 				<div class="reviews__title">{{ contain.title }}</div>
