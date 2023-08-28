@@ -12,7 +12,9 @@ import Classes from '../views/Classes.vue';
 import MoreLess from '../views/Classes/MoreLess.vue';
 import Calendar from '../views/Classes/Calendar.vue';
 import Swiper from '../views/Classes/Swiper.vue';
-import TouchLightbox from '../views/Classes/TouchLightbox.vue';
+import TouchLightbox1 from '../views/Classes/TouchLightbox1.vue';
+import Lightbox from '../views/Classes/Lightbox.vue';
+import Render from '../views/Classes/Render.vue';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,14 +41,24 @@ const router = createRouter({
 			component: MoreLess
 		},
 		{
+			path: '/classes/render',
+			name: 'render',
+			component: Render
+		},
+		{
 			path: '/classes/calendar',
 			name: 'calendar',
 			component: Calendar
 		},
 		{
-			path: '/classes/lightbox',
-			name: 'TouchLightbox',
-			component: TouchLightbox
+			path: '/classes/lightbox1',
+			name: 'Lightbox1',
+			component: TouchLightbox1
+		},
+		{
+			path: '/classes/lightbox1',
+			name: 'TouchLightbox1',
+			component: Lightbox
 		},
 		{
 			path: '/classes/swiper',

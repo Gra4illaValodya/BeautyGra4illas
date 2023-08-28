@@ -1,4 +1,5 @@
 <template>
+
 	<teleport to="body" v-if="isOpen">
 		{{ imageLeft }}--{{ imageTop }}
 		<div class="lightbox">
@@ -191,8 +192,6 @@ watch(isOpen, newValue => {
 	height: 100%;
 	object-fit: cover;
 }
-
-
 
 @keyframes scaleModal {
 	0% {
