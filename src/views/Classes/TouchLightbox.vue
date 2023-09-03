@@ -1,12 +1,10 @@
 <template>
-
 	<teleport to="body" v-if="isOpen">
-		{{ imageLeft }}--{{ imageTop }}
-		<div class="lightbox">
+		<div class="lightbox" @contextmenu.prevent>
 			<div class="backdrop" @click="isOpen = false"></div>
 			<div
 				class="content"
-				ref="videos"
+				@click="isOpen = false"
 				:style="{
 					top: imageTop + 'px',
 					left: imageLeft + 'px',
@@ -14,144 +12,170 @@
 					height: HeightParam + 'px'
 				}"
 			>
-				<slot />
+				<img
+					v-if="!localSrc.includes('.mp4')"
+					@contextmenu.prevent
+					:src="localSrc"
+					class="elementLightbox"
+				/>
+				<video
+					v-if="localSrc?.includes('.mp4')"
+					@contextmenu.prevent
+					ref="lingtboxVideoRef"
+					class="elementLightbox"
+				>
+					<source :src="localSrc" />
+				</video>
 			</div>
 		</div>
 	</teleport>
-	<div @click="handleImageClick" ref="content">
-		<slot />
-	</div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
+import { ref, onMounted, onUnmounted, watch, nextTick, watchEffect } from 'vue'
 
-const isOpen = ref(false);
-const content = ref(null);
-const videos = ref(null);
+const isOpen = ref(false)
+const localSrc = ref(null)
 
-const imageLeft = ref(0);
-const imageTop = ref(0);
+const clickedElement = ref(null)
+const lingtboxVideoRef = ref(null)
 
-const WidthParam = ref(0);
-const HeightParam = ref(0);
+const imageLeft = ref(0)
+const imageTop = ref(0)
 
-const isVideoPlaying = ref(false);
+const WidthParam = ref(0)
+const HeightParam = ref(0)
+const tagNameElement = ref(null)
 
-const handleImageClick = () => {
-	isOpen.value = true;
-	isVideoPlaying.value = true;
-};
+const handleClick = element => {
+	console.log('element in lightbox before initialization', clickedElement.value)
+	isOpen.value = true
+	clickedElement.value = element
+	console.log('element in lightbox', clickedElement.value)
 
+	tagNameElement.value = element.tagName
+	console.log('tagName', tagNameElement.value)
+	if (tagNameElement.value === 'VIDEO') {
+		const lightboxVideo = element.querySelector('source')
+		console.log('lightboxVideo', lightboxVideo, lightboxVideo.getAttribute('src'))
+
+		localSrc.value = lightboxVideo.getAttribute('src')
+	} else if (tagNameElement.value === 'IMG') {
+		localSrc.value = element.getAttribute('src')
+	}
+	console.log('localSrc.value', localSrc.value)
+}
 const updateImagePosition = () => {
-	const imageElement = content.value.querySelector('img');
-	const videoElement = content.value.querySelector('video');
+	const screenWidth = window.innerWidth
+	const screenHeight = window.innerHeight
 
-	const screenWidth = window.innerWidth;
-	const screenHeight = window.innerHeight;
+	const videoElement = clickedElement.value
+	console.log('videoElement', videoElement)
 
-	console.log('screenWidth !!!', screenWidth);
-	console.log('screenHeight !!!', screenHeight);
+	const imageElement = clickedElement.value
+	console.log('imageElement', imageElement)
+	if (tagNameElement.value === 'IMG') {
+		console.log('tagNameElement.value', tagNameElement.value)
 
-	if (imageElement) {
-		const imageWidth = imageElement.naturalWidth;
-		const imageHeight = imageElement.naturalHeight;
-		console.log('imageWidth', imageWidth);
-		console.log('imageHeight', imageHeight);
+		const imageWidth = imageElement.naturalWidth
+		const imageHeight = imageElement.naturalHeight
+
 		if (imageWidth > screenWidth) {
-			imageTop.value = 30;
+			imageLeft.value = 15
+			WidthParam.value = screenWidth - 30
+			console.log('WidthParam', WidthParam.value)
 		} else {
-			imageLeft.value = (screenWidth - imageWidth) / 2;
-			WidthParam.value = imageWidth;
+			WidthParam.value = imageWidth
+			imageLeft.value = (screenWidth - imageWidth) / 2
+			console.log('WidthParam', WidthParam.value)
 		}
 		if (imageHeight > screenHeight) {
-			imageLeft.value = 30;
+			imageTop.value = 15
+			HeightParam.value = screenHeight - 30
+			console.log('HeightParam', HeightParam.value)
 		} else {
-			imageTop.value = (screenHeight - imageHeight) / 2;
-			HeightParam.value = imageHeight;
+			HeightParam.value = imageHeight
+			imageTop.value = (screenHeight - imageHeight) / 2
+			console.log('HeightParam', HeightParam.value)
+		}
+	}
+	if (tagNameElement.value === 'VIDEO') {
+		console.log('tagNameElement.value', tagNameElement.value)
+
+		const videoWidth = videoElement.videoWidth
+		const videoHeight = videoElement.videoHeight
+
+		if (videoWidth > screenWidth) {
+			imageLeft.value = 0
+			WidthParam.value = screenWidth
+			console.log('WidthParam', WidthParam.value)
+		} else {
+			imageLeft.value = (screenWidth - videoWidth) / 2
+			WidthParam.value = videoWidth
+			console.log('WidthParam', WidthParam.value)
 		}
 
-		console.log('imageLeft.value', imageLeft.value);
-		console.log('imageTop.value', imageTop.value);
+		if (videoHeight > screenHeight) {
+			imageTop.value = 15
+			HeightParam.value = screenHeight - 30
+			console.log('HeightParam', HeightParam.value)
+		} else {
+			imageTop.value = (screenHeight - videoHeight) / 2
+			HeightParam.value = videoHeight
+			console.log('HeightParam', HeightParam.value)
+		}
 	}
+	console.log('final')
+}
 
-	if (videoElement) {
-		videoElement.addEventListener('loadedmetadata', () => {
-			const videoWidth = videoElement.videoWidth;
-			const videoHeight = videoElement.videoHeight;
-
-			console.log('videoWidth VIDEO', videoWidth);
-			console.log('videoHeight VIDEO', videoHeight);
-
-			if (videoHeight > screenHeight) {
-				imageTop.value = 30;
-				HeightParam.value = screenHeight;
-			} else {
-				imageTop.value = (screenHeight - videoHeight) / 2;
-				HeightParam.value = videoHeight;
-
-				console.log('imageLeft.value VIDEO', imageLeft.value);
-				console.log('imageTop.value VIDEO', imageTop.value);
-			}
-			if (videoWidth > screenWidth) {
-				imageLeft.value = 30;
-				WidthParam.value = screenWidth;
-			} else {
-				imageLeft.value = (screenWidth - videoWidth) / 2;
-				WidthParam.value = videoWidth;
-			}
-
-			if (!isVideoPlaying.value) {
-				console.log('videoElement', videoElement);
-				videoElement.muted = true;
-				videoElement.play();
-			} else {
-				console.log('videoElement', videoElement);
-				videoElement.muted = false;
-				videoElement.muted = true;
-			}
-		});
+const onOpenLighbox = () => {
+	if (clickedElement.value.tagName === 'VIDEO') {
+		lingtboxVideoRef.value.muted = false
+		lingtboxVideoRef.value.play()
+		clickedElement.value.pause()
 	}
-};
+	console.log('OpenLingtbox')
+}
 
-const handleResize = () => {
-	if (isOpen.value) {
-		updateImagePosition();
+const onCloseLightbox = () => {
+	if (clickedElement.value.tagName === 'VIDEO') {
+		clickedElement.value.play()
+		clickedElement.value.muted = true
 	}
-};
+	clickedElement.value = null
+	localSrc.value = null
+}
 
-onMounted(() => {
-	window.addEventListener('resize', handleResize);
+watch(clickedElement, newValue => {
+	if (newValue) {
+		updateImagePosition()
+		window.addEventListener('resize', updateImagePosition)
+	} else {
+		window.removeEventListener('resize', updateImagePosition)
+	}
+})
 
-	updateImagePosition();
-});
-
-onUnmounted(() => {
-	window.removeEventListener('resize', handleResize);
-});
-
-// watch(isVideoPlaying, newValue => {
-// 	const videoElement = content.value.querySelector('video');
-// 	if (newValue) {
-// 		videoElement.play();
-// 	} else {
-// 		videoElement.pause();
-// 	}
-// });
 watch(isOpen, newValue => {
 	if (newValue) {
 		nextTick(() => {
-			updateImagePosition();
-		});
+			updateImagePosition()
+			onOpenLighbox()
+		})
+	} else {
+		onCloseLightbox()
 	}
-});
+})
+onMounted(() => {
+	window.openTouchLightbox = handleClick
+	window.closeTouchLightbox = () => {
+		isOpen.value = false
+	}
+	console.log('lingtboxVideoRef', lingtboxVideoRef.value)
+	updateImagePosition()
+})
 </script>
 
 <style lang="scss" scoped>
-.img {
-	padding: 5px;
-}
-
 .lightbox {
 	position: fixed;
 	top: 0;
@@ -161,7 +185,7 @@ watch(isOpen, newValue => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 1000;
+	z-index: 999999999;
 }
 
 .backdrop {
@@ -171,6 +195,7 @@ watch(isOpen, newValue => {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.7);
+	// background-image: url('https://w.forfun.com/fetch/fb/fb32051fea20df1c8d023670f962c372.jpeg?h=900&r=0.5');
 }
 
 .content {
@@ -181,16 +206,12 @@ watch(isOpen, newValue => {
 	top: 0px;
 	display: flex;
 	z-index: 1;
-	background-color: white;
-	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
 .content img,
 .content video {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 @keyframes scaleModal {

@@ -27,6 +27,11 @@
 					Render Function
 				</router-link>
 			</li>
+			<li>
+				<router-link to="/classes/position" class="classes__navItem">
+					Position
+				</router-link>
+			</li>
 		</ul>
 	</div>
 </template>

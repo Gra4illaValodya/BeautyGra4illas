@@ -1,5 +1,27 @@
 <template>
-	<div>{ r() }</div>
+	<div>
+		<img
+			src="https://images.unsplash.com/photo-1566275529824-cca6d008f3da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGhvdG98ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+			alt=""
+			@click="openLightbox"
+		/>
+	</div>
+</template>
+
+<script setup>
+const openLightbox = src => {
+	console.log('lightbox is OPEN');
+	if (src) {
+		window.openTouchLightbox(src);
+	}
+};
+</script>
+
+<style lang="scss" scoped></style>
+
+<!--
+<template>
+	
 	<Lightbox>
 		<img
 			src="https://images.unsplash.com/photo-1566275529824-cca6d008f3da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGhvdG98ZW58MHx8MHx8fDA%3D&w=1000&q=80"
@@ -7,7 +29,7 @@
 		/>
 	</Lightbox>
 	<Lightbox>
-		<img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="" />
+		<img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt=""  />
 	</Lightbox>
 	<Lightbox>
 		<img
@@ -15,8 +37,8 @@
 			alt=""
 		/>
 	</Lightbox>
-	<!-- <Lightbox> </Lightbox>
-	<Lightbox> </Lightbox> -->
+ <Lightbox> </Lightbox>
+	<Lightbox> </Lightbox> 
 </template>
 
 <script>
@@ -36,3 +58,4 @@ export default {
 	display: flex;
 }
 </style>
+-->

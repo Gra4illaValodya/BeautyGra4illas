@@ -15,6 +15,7 @@ import Swiper from '../views/Classes/Swiper.vue';
 import TouchLightbox1 from '../views/Classes/TouchLightbox1.vue';
 import Lightbox from '../views/Classes/Lightbox.vue';
 import Render from '../views/Classes/Render.vue';
+import Position from '../views/Classes/Position.vue';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,6 +40,11 @@ const router = createRouter({
 			path: '/classes/moreLess',
 			name: 'moreLess',
 			component: MoreLess
+		},
+		{
+			path: '/classes/position',
+			name: 'position',
+			component: Position
 		},
 		{
 			path: '/classes/render',

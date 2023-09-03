@@ -14,7 +14,7 @@
 			<SwiperSlide class="reviews__wrapper" v-for="(contain, idx) in reviews" :key="idx">
 				<div class="reviews__title">{{ contain.title }}</div>
 				<div class="reviews__text" v-if="contain.text.length <= 150">
-					{{ contain.text.slice(0, 150) + '...' }}
+					{{ contain.text.slice(0, 10) + '...' }}
 				</div>
 				<div class="reviews__text" v-else>
 					{{ isFullText[idx] ? contain.text.slice(0, 150) + '...' : contain.text }}
@@ -24,7 +24,7 @@
 					v-if="contain.text.length >= 150"
 					@click.stop="isFullTextActive(idx)"
 				>
-					{{ isFullText[idx] ? 'показать больше' : 'показать  меньше' }}
+					{{ isFullText[idx] ? 'показать  меньше' : 'показать больше' }}
 				</div>
 			</SwiperSlide>
 			<div class="swiper-button-next" @click.stop="next"></div>
@@ -52,10 +52,15 @@ onMounted(() => {
 const onSwiper = ref => {
 	swiper = ref;
 };
+
 const onSlideChange = () => {
 	console.log('onSlideChange');
 };
+
 const isFullTextActive = idx => {
+	console.log('idx', idx);
+	console.log('isFullText.value', isFullText.value);
+
 	isFullText.value[idx] = !isFullText.value[idx];
 };
 const next = () => {
