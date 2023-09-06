@@ -1,5 +1,10 @@
 <template>
 	<div>
+		<ul>
+			<li v-for="(item, idx) in myArr" :key="idx" @click="changeStatus(idx)">
+				{{ item }} {{ status[idx] ? 'YES' : 'NO' }}
+			</li>
+		</ul>
 		<img
 			src="https://images.unsplash.com/photo-1566275529824-cca6d008f3da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGhvdG98ZW58MHx8MHx8fDA%3D&w=1000&q=80"
 			alt=""
@@ -9,6 +14,13 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+	
+const myArr = ref(['banana', 'coconat', 'lemon']);
+const status = ref([]);
+const changeStatus = idx => {
+	status.value[idx] = !status.value[idx];
+};
 const openLightbox = src => {
 	console.log('lightbox is OPEN');
 	if (src) {

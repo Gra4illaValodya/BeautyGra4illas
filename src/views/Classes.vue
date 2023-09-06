@@ -23,13 +23,17 @@
 				</router-link>
 			</li>
 			<li>
-				<router-link to="/classes/render" class="classes__navItem">
-					Render Function
-				</router-link>
+				<router-link to="/classes/render" class="classes__navItem"> ВРЕМЯ </router-link>
 			</li>
 			<li>
 				<router-link to="/classes/position" class="classes__navItem">
 					Position
+				</router-link>
+			</li>
+			<li>
+				<router-link to="/classes/position" class="classes__navItem">
+					ВИДЖЕТ ПОГОДЫ OPENWEATHERMAP !!!! иконки
+					https://erikflowers.github.io/weather-icons/
 				</router-link>
 			</li>
 		</ul>

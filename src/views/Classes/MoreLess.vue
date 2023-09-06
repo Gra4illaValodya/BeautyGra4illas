@@ -13,11 +13,11 @@
 		>
 			<SwiperSlide class="reviews__wrapper" v-for="(contain, idx) in reviews" :key="idx">
 				<div class="reviews__title">{{ contain.title }}</div>
-				<div class="reviews__text" v-if="contain.text.length <= 150">
-					{{ contain.text.slice(0, 10) + '...' }}
+				<div class="reviews__text" v-if="contain.text.length >= 150">
+					{{ isFullText[idx] ? contain.text : contain.text.slice(0, 150) + ' ...' }}
 				</div>
 				<div class="reviews__text" v-else>
-					{{ isFullText[idx] ? contain.text.slice(0, 150) + '...' : contain.text }}
+					{{ contain.text }}
 				</div>
 				<div
 					class="reviews__moreLess"
@@ -46,9 +46,7 @@ const reviews = store.state.classesStoreModule.moreLess;
 
 const isFullText = ref([]);
 let swiper;
-onMounted(() => {
-	swiper = new Swiper('.swiper', swiperOptions);
-});
+onMounted(() => {});
 const onSwiper = ref => {
 	swiper = ref;
 };
@@ -59,9 +57,11 @@ const onSlideChange = () => {
 
 const isFullTextActive = idx => {
 	console.log('idx', idx);
-	console.log('isFullText.value', isFullText.value);
+	console.log('isFullText.value BEFORE', isFullText.value);
 
 	isFullText.value[idx] = !isFullText.value[idx];
+
+	console.log('isFullText.value AFTER', isFullText.value);
 };
 const next = () => {
 	swiper.slideNext();
