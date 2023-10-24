@@ -16,10 +16,39 @@ import TouchLightbox1 from '../views/Classes/TouchLightbox1.vue';
 import Lightbox from '../views/Classes/Lightbox.vue';
 import Render from '../views/Classes/Render.vue';
 import Position from '../views/Classes/Position.vue';
+import LocalStorage from '../views/Classes/LocalStorage.vue';
+import AsyncAwait from '../views/Classes/AsyncAwait.vue';
+import Animations from '../views/Classes/Animations.vue';
+import Emit from '../views/Classes/Emit.vue';
+import EmitChild from '../views/Classes/EmitChild.vue';
+import Course from '../views/Classes/Course/Course.vue';
+import Project1 from '../views/Classes/Course/Project1.vue';
+import Project2 from '../views/Classes/Course/Project2.vue';
+import Project3 from '../views/Classes/Course/Project3.vue';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
 	routes: [
+		{
+			path: '/course/project-1',
+			name: 'Project1',
+			component: Project1
+		},
+		{
+			path: '/course/project-2',
+			name: 'Project2',
+			component: Project2
+		},
+		{
+			path: '/course/project-3',
+			name: 'Project3',
+			component: Project3
+		},
+		{
+			path: '/classes/course',
+			name: 'Course',
+			component: Course
+		},
 		{
 			path: '/services',
 			name: 'services',
@@ -40,6 +69,32 @@ const router = createRouter({
 			path: '/classes/moreLess',
 			name: 'moreLess',
 			component: MoreLess
+		},
+		{
+			path: '/classes/localstorage',
+			name: 'LocalStorage',
+			component: LocalStorage
+		},
+
+		{
+			path: '/classes/emit',
+			name: 'Emit',
+			component: Emit
+		},
+		{
+			path: '/classes/emitchild',
+			name: 'EmitChild',
+			component: EmitChild
+		},
+		{
+			path: '/classes/animations',
+			name: 'Animations',
+			component: Animations
+		},
+		{
+			path: '/classes/asyncawait',
+			name: 'AsyncAwait',
+			component: AsyncAwait
 		},
 		{
 			path: '/classes/position',
