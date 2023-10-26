@@ -1,0 +1,62 @@
+[
+	{
+		"id": 1,
+		"name": "BMW",
+		"price": 15000,
+		"year": 2010,
+		"contact": {
+			"dealer": "Rod",
+			"number": "111-111-1111"
+		}
+	},
+	{
+		"id": 2,
+		"name": "Mercedes",
+		"price": 154000,
+		"year": 2002,
+		"contact": {
+			"dealer": "Denny",
+			"number": "222-222-2222"
+		}
+	},
+	{
+		"id": 3,
+		"name": "Nissan",
+		"price": 5000,
+		"year": 2004,
+		"contact": {
+			"dealer": "Nik",
+			"number": "333-333-3333"
+		}
+	},
+	{
+		"id": 4,
+		"name": "Dodge",
+		"price": 12000,
+		"year": 2015,
+		"contact": {
+			"dealer": "Tommy",
+			"number": "444-444-4444"
+		}
+	},
+	{
+		"id": 5,
+		"name": "Range Rover",
+		"price": 19000,
+		"year": 2012,
+		"contact": {
+			"dealer": "Frencis",
+			"number": "555-555-5555"
+		}
+	},
+	{
+		"id": 6,
+		"name": "Schoda",
+		"price": 10000,
+		"year": 2013,
+		"contact": {
+			"dealer": "Robert",
+			"number": "666-666-6666"
+		}
+	}
+]

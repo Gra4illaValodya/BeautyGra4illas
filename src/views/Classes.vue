@@ -15,19 +15,13 @@
 			<li>
 				<router-link to="/classes/swiper" class="classes__navItem"> Свайпер</router-link>
 			</li>
-			<li>
-				<router-link to="/classes/lightbox" class="classes__navItem">
-					wqwqLightBooooox2222</router-link
-				>
-			</li>
+			
 			<li>
 				<router-link to="/classes/lightbox1" class="classes__navItem">
 					LightBox
 				</router-link>
 			</li>
-			<li>
-				<router-link to="/classes/render" class="classes__navItem"> ВРЕМЯ </router-link>
-			</li>
+		
 			<li>
 				<router-link to="/classes/asyncawait" class="classes__navItem">
 					Async Await

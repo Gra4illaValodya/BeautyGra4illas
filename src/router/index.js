@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import ServicesView from '../views/ServicesView.vue';
+import Car from '../views/Car.vue';
+import NotFoundView from '../views/404View.vue';
+import QuizView from '../views/QuizView.vue';
+import ContactView from '../views/ContactView.vue';
 import CardDetailsView from '../views/CardDetailsView.vue';
 import AboutView from '../views/AboutView.vue';
 import HomeView from '../views/HomeView.vue';
@@ -25,10 +29,17 @@ import Course from '../views/Classes/Course/Course.vue';
 import Project1 from '../views/Classes/Course/Project1.vue';
 import Project2 from '../views/Classes/Course/Project2.vue';
 import Project3 from '../views/Classes/Course/Project3.vue';
+import Project4 from '../views/Classes/Course/Project4.vue';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
 	routes: [
+		{
+			path: '/course/project-4/:id',
+			name: 'Car',
+			component: Car,
+			children: [{ path: 'contact', component: ContactView }]
+		},
 		{
 			path: '/course/project-1',
 			name: 'Project1',
@@ -44,6 +55,17 @@ const router = createRouter({
 			name: 'Project3',
 			component: Project3
 		},
+		{
+			path: '/course/project-4',
+			name: 'Project4',
+			component: Project4
+		},
+		{
+			path: '/course/project-3/:id',
+			name: 'QuizView',
+			component: QuizView
+		},
+
 		{
 			path: '/classes/course',
 			name: 'Course',
@@ -156,6 +178,11 @@ const router = createRouter({
 			path: '/services/:id',
 			name: 'cardDetails',
 			component: CardDetailsView
+		},
+		{
+			path: '/:catchall(.*)*',
+			name: 'Not Found',
+			component: NotFoundView
 		}
 	]
 });

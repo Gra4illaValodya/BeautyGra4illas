@@ -8,7 +8,10 @@
 				<router-link to="/course/project-2">Propject 2</router-link>
 			</li>
 			<li class="course__navItem">
-				<router-link to="/course/project-3">Propject 2</router-link>
+				<router-link to="/course/project-3">Propject 3</router-link>
+			</li>
+			<li class="course__navItem">
+				<router-link to="/course/project-4">Propject 4</router-link>
 			</li>
 		</ul>
 	</div>
